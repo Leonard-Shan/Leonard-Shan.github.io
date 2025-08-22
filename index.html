@@ -3,55 +3,145 @@
 <head>
   <meta charset="UTF-8">
   <title>Leonard Shan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      height: 100vh;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      font-family: 'Tahoma', sans-serif;
-      background: linear-gradient(135deg, #1e3c72, #2a5298); /* پس‌زمینه گرادیان شیک */
       color: #fff;
+      overflow: hidden;
+    }
+
+    /* افکت شناور برای پس‌زمینه */
+    body::before {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 1%, transparent 1%);
+      background-size: 50px 50px;
+      animation: floatBG 20s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes floatBG {
+      0% { transform: translate(0,0); }
+      50% { transform: translate(-50px, 50px); }
+      100% { transform: translate(0,0); }
+    }
+
+    .container {
+      position: relative;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 50px 30px;
+      border-radius: 25px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
       text-align: center;
+      max-width: 400px;
+      width: 90%;
+      backdrop-filter: blur(12px);
+      z-index: 1;
+      animation: fadeIn 1.5s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .profile-img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 4px solid #ff5722;
+      object-fit: cover;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      animation: popIn 1s ease-out forwards;
+      transform: scale(0);
+    }
+
+    @keyframes popIn {
+      to { transform: scale(1); }
     }
 
     h1 {
-      font-size: 3rem;
-      margin: 0;
-      font-weight: bold;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
       letter-spacing: 2px;
+      animation: slideUp 1s ease-out forwards;
+      opacity: 0;
+      transform: translateY(30px);
     }
 
-    p {
-      font-size: 1.5rem;
-      margin: 15px 0 30px 0;
-    }
-
-    a.button {
-      display: inline-block;
-      padding: 12px 30px;
+    p.subtitle {
       font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #ffcc80;
+      animation: slideUp 1s ease-out forwards;
+      animation-delay: 0.3s;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    @keyframes slideUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .buttons a {
+      display: inline-block;
+      padding: 14px 30px;
+      margin: 8px;
+      font-size: 1rem;
       font-weight: bold;
       color: #fff;
       background: #ff5722;
       border-radius: 50px;
       text-decoration: none;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
       transition: 0.3s;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      transform: translateY(30px);
+      opacity: 0;
+      animation: buttonPop 1s ease-out forwards;
     }
 
-    a.button:hover {
-      background: #e64a19;
-      transform: scale(1.05);
+    .buttons a:nth-child(1) { animation-delay: 0.6s; }
+    .buttons a:nth-child(2) { animation-delay: 0.9s; }
+
+    @keyframes buttonPop {
+      to { transform: translateY(0); opacity: 1; }
     }
+
+    .buttons a:hover {
+      background: #e64a19;
+      transform: scale(1.1);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.5);
+    }
+
   </style>
 </head>
 <body>
-  <h1>Leonard Shan</h1>
-  <p>سلام</p>
-  <a class="button" href="https://eitaa.com/Leonard_Shan" target="_blank">Eitta</a>
+  <div class="container">
+    <img src="https://imgurl.ir/uploads/y30747_IMG_20250823_011237_765.jpg" alt="Leonard Shan" class="profile-img">
+    <h1>Leonard Shan</h1>
+    <p class="subtitle">Front-end Developer & Designer</p>
+
+    <div class="buttons">
+      <a href="https://eitaa.com/Leonard_Shan" target="_blank">Eitta</a>
+      <a href="https://t.me/Leonard_shan" target="_blank">Telegram</a>
+    </div>
+  </div>
 </body>
 </html>
