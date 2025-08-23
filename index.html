@@ -16,24 +16,33 @@
     body {
       font-family: 'Roboto', sans-serif;
       min-height: 100vh;
-      background-color: #ffc107; /* زرد شاد و روشن */
       display: flex;
       justify-content: center;
       align-items: center;
       color: #fff;
       overflow: hidden;
+      background: linear-gradient(270deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+      background-size: 1400% 1400%;
+      animation: gradientShift 20s ease infinite;
+      transition: background 1s ease;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .container {
       position: relative;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.35); /* نیمه شفاف برای خوانایی */
       padding: 40px 20px;
       border-radius: 25px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
       text-align: center;
       width: 90%;
       max-width: 400px;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
     }
 
     /* عکس پروفایل */
@@ -44,7 +53,7 @@
       border: 4px solid #fff;
       object-fit: cover;
       margin-bottom: 20px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
       animation: popIn 1s ease-out forwards;
       transform: scale(0);
     }
@@ -74,11 +83,11 @@
       font-size: 1rem;
       font-weight: bold;
       color: #fff;
-      background: #222; /* دکمه تیره روی زرد */
+      background: #222;
       border-radius: 50px;
       text-decoration: none;
       transition: 0.3s;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
       transform: translateY(30px);
       opacity: 0;
       animation: buttonPop 1s ease-out forwards;
