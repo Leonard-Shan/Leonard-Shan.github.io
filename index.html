@@ -24,7 +24,6 @@
       background: linear-gradient(270deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
       background-size: 1400% 1400%;
       animation: gradientShift 20s ease infinite;
-      transition: background 1s ease;
     }
 
     @keyframes gradientShift {
@@ -35,7 +34,7 @@
 
     .container {
       position: relative;
-      background: rgba(0, 0, 0, 0.35); /* نیمه شفاف برای خوانایی */
+      background: rgba(0, 0, 0, 0.35);
       padding: 40px 20px;
       border-radius: 25px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
@@ -45,7 +44,6 @@
       backdrop-filter: blur(10px);
     }
 
-    /* عکس پروفایل */
     .profile-img {
       width: 140px;
       height: 140px;
@@ -75,7 +73,10 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* دکمه‌ها */
+    .buttons {
+      margin-bottom: 20px;
+    }
+
     .buttons a {
       display: inline-block;
       padding: 12px 28px;
@@ -100,12 +101,42 @@
       to { transform: translateY(0); opacity: 1; }
     }
 
-    .buttons a:hover {
+    .buttons a:hover, .music-btn:hover {
       background: #000;
       transform: scale(1.1);
       box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     }
 
+    .music-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 28px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      background: #222;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+      margin-top: 10px;
+      width: 200px;
+      margin-left: auto;
+      margin-right: auto;
+      transform: translateY(30px);
+      opacity: 0;
+      animation: buttonPop 1s ease-out forwards;
+      animation-delay: 1.2s;
+    }
+
+    .music-btn svg {
+      margin-right: 8px;
+      width: 18px;
+      height: 18px;
+      fill: #fff;
+    }
   </style>
 </head>
 <body>
@@ -117,6 +148,39 @@
       <a href="https://eitaa.com/Leonard_Shan" target="_blank">Eitta</a>
       <a href="https://t.me/Leonard_shan" target="_blank">Telegram</a>
     </div>
+
+    <button id="music-btn" class="music-btn" onclick="toggleMusic()">
+      <svg id="music-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      Play Music
+    </button>
   </div>
+
+  <audio id="bg-music" src="https://cdn.tiktokmusics.ir/music/Freaking%20Out%20The%20Neighbourhood%20By%20Mac%20DeMarco.mp3"></audio>
+
+  <script>
+    const audio = document.getElementById("bg-music");
+    const btn = document.getElementById("music-btn");
+    const icon = document.getElementById("music-icon");
+
+    function toggleMusic() {
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = " Pause Music";
+        btn.prepend(icon);
+        icon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
+      } else {
+        audio.pause();
+        btn.textContent = " Play Music";
+        btn.prepend(icon);
+        icon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+      }
+    }
+
+    audio.addEventListener("ended", () => {
+      btn.textContent = " Play Music";
+      btn.prepend(icon);
+      icon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+    });
+  </script>
 </body>
 </html>
